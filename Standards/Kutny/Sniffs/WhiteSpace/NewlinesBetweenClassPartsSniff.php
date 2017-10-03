@@ -75,12 +75,6 @@ class Kutny_Sniffs_WhiteSpace_NewlinesBetweenClassPartsSniff extends Kutny_Sniff
 		if ($class) {
 			$name = $tokens[$class]['type'] === 'T_CLASS' ? 'class' : 'interface';
 			$classStart = $this->getDocBlockOrDeclarationLine($phpcsFile, $class);
-			if (!$this->isPreviousLineEmpty($phpcsFile, $classStart)) {
-				$phpcsFile->addError(
-					'Line before ' . $name  . ' beginning must be empty.',
-					$this->getLastPtrOnPreviousLine($phpcsFile, $classStart)
-				);
-			}
 
 			if ($this->isNextLineEmpty($phpcsFile, $tokens[$class]['scope_opener'])) {
 				$phpcsFile->addError(
