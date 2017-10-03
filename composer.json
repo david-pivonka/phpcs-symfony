@@ -1,0 +1,19 @@
+{
+	"name": "kutny/phpcs-symfony",
+	"description": "My standards for Symfony2 development",
+	"type": "library",
+	"keywords": [
+		"phpcs",
+		"standards",
+		"symfony"
+	],
+	"license": "MIT",
+	"require": {
+		"php": ">=7.0.0",
+		"phpunit/phpunit": ">=6.0.0",
+		"squizlabs/php_codesniffer": "2.9.0"
+	},
+	"config": {
+		"bin-dir": "bin"
+	}
+}
