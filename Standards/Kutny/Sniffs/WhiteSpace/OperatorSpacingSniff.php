@@ -53,7 +53,7 @@ class Kutny_Sniffs_WhiteSpace_OperatorSpacingSniff implements \PHP_CodeSniffer\S
      */
     public function register()
     {
-        return PHP_CodeSniffer_Tokens::$operators;
+        return \PHP_CodeSniffer\Util\Tokens::$operators;
 
     }//end register()
 
@@ -134,7 +134,7 @@ class Kutny_Sniffs_WhiteSpace_OperatorSpacingSniff implements \PHP_CodeSniffer\S
                     return;
                 }
 
-                if (in_array($tokens[$prev]['code'], PHP_CodeSniffer_Tokens::$operators) === true) {
+                if (in_array($tokens[$prev]['code'], \PHP_CodeSniffer\Util\Tokens::$operators) === true) {
                     // Just trying to operate on a negative value; eg. ($var * -1).
 
 					if ($tokens[$stackPtr + 1]['code'] === T_WHITESPACE) {
@@ -145,7 +145,7 @@ class Kutny_Sniffs_WhiteSpace_OperatorSpacingSniff implements \PHP_CodeSniffer\S
 					}
                 }
 
-                if (in_array($tokens[$prev]['code'], PHP_CodeSniffer_Tokens::$comparisonTokens) === true) {
+                if (in_array($tokens[$prev]['code'], \PHP_CodeSniffer\Util\Tokens::$comparisonTokens) === true) {
                     // Just trying to compare a negative value; eg. ($var === -1).
                     return;
                 }
@@ -166,7 +166,7 @@ class Kutny_Sniffs_WhiteSpace_OperatorSpacingSniff implements \PHP_CodeSniffer\S
                 }
 
 
-				if (in_array($tokens[$prev]['code'], PHP_CodeSniffer_Tokens::$assignmentTokens) === true) {
+				if (in_array($tokens[$prev]['code'], \PHP_CodeSniffer\Util\Tokens::$assignmentTokens) === true) {
 					// This is a negative assignment.
 					return;
 				}
@@ -180,7 +180,7 @@ class Kutny_Sniffs_WhiteSpace_OperatorSpacingSniff implements \PHP_CodeSniffer\S
             } else if (strlen($tokens[($stackPtr - 1)]['content']) !== 1) {
                 // Don't throw an error for assignments, because other standards allow
                 // multiple spaces there to align multiple assignments.
-                if (in_array($tokens[$stackPtr]['code'], PHP_CodeSniffer_Tokens::$assignmentTokens) === false) {
+                if (in_array($tokens[$stackPtr]['code'], \PHP_CodeSniffer\Util\Tokens::$assignmentTokens) === false) {
 					if ($tokens[($stackPtr - 1)]['content'][0] !== "\t") {
 						$found = strlen($tokens[($stackPtr - 1)]['content']);
 						$error = 'Expected 1 space before "%s"; %s found';

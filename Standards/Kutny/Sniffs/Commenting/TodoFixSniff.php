@@ -26,7 +26,7 @@ class Kutny_Sniffs_Commenting_TodoFixSniff implements \PHP_CodeSniffer\Sniffs\Sn
      */
     public function register()
     {
-        return PHP_CodeSniffer_Tokens::$commentTokens;
+        return \PHP_CodeSniffer\Util\Tokens::$commentTokens;
 
     }//end register()
 
