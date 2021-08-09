@@ -159,10 +159,6 @@ class Kutny_Sniffs_WhiteSpace_NewlinesBetweenClassPartsSniff extends Kutny_Sniff
 			if ($function === FALSE) {
 				break;
 			}
-			if ($phpcsFile->isAnonymousFunction($function)) {
-				$next = $function + 1;
-				continue;
-			}
 
 			// members -> functions order check
 			if ($class && $next === $stackPtr) {
