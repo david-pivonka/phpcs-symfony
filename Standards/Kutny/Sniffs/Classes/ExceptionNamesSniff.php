@@ -40,7 +40,7 @@ class Kutny_Sniffs_Classes_ExceptionNamesSniff
 			$extendsName = $this->buildClassName($phpcsFile, $extendsPtr);
 			if (substr($extendsName, -strlen('Exception')) === 'Exception') {
 				if (substr($className, -strlen('Exception')) !== 'Exception') {
-					$phpcsFile->addError('Exception class names must end with "Exception".', $stackPtr);
+					$phpcsFile->addError('Exception class names must end with "Exception".', $stackPtr, 0);
 				}
 			}
 		}

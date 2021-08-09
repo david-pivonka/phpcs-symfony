@@ -49,7 +49,7 @@ class Kutny_Sniffs_Namespaces_FullyQualifiedNameRulesSniff implements \PHP_CodeS
 
 		if ($classDefinedBeforeCurrentStackPtr) {
 			if ($tokens[$stackPtr - 1]['type'] === 'T_STRING') {
-				$phpcsFile->addError('Partial use statements are NOT allowed', $stackPtr);
+				$phpcsFile->addError('Partial use statements are NOT allowed', $stackPtr, 0);
 			}
 			else {
 				$fullClassName = $this->classNameComposerForward->composeClassName($phpcsFile, $stackPtr);
@@ -59,7 +59,7 @@ class Kutny_Sniffs_Namespaces_FullyQualifiedNameRulesSniff implements \PHP_CodeS
 				$foundClass = $allUsedClasses->findClassSameNameDifferentNamespace($class->getName(), $class->getNamespace());
 
 				if (!$foundClass) {
-					$phpcsFile->addError('Fully qualified class name must NOT be used', $stackPtr);
+					$phpcsFile->addError('Fully qualified class name must NOT be used', $stackPtr, 0);
 				}
 			}
 		}
@@ -76,7 +76,7 @@ class Kutny_Sniffs_Namespaces_FullyQualifiedNameRulesSniff implements \PHP_CodeS
 			$foundClass = $allUsedClasses->findClassSameNameDifferentNamespace($classInPhpDocs->getName(), $classInPhpDocs->getNamespace());
 
 			if (!$foundClass) {
-				$phpcsFile->addError('Fully qualified class name must NOT be used even in PHPDocs comments', $stackPtr);
+				$phpcsFile->addError('Fully qualified class name must NOT be used even in PHPDocs comments', $stackPtr, 0);
 			}
 		}
 	}

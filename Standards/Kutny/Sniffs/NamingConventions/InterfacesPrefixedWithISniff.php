@@ -35,7 +35,8 @@ class Kutny_Sniffs_NamingConventions_InterfacesPrefixedWithISniff implements \PH
 		if ($namePtr !== FALSE && substr($tokens[$namePtr]['content'], 0, 1) !== 'I') {
 			$phpcsFile->addError(
 				'Interface name must be prefixed with I.',
-				$namePtr
+				$namePtr,
+                0
 			);
 		}
 

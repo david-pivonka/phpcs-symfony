@@ -139,7 +139,7 @@ class Kutny_Sniffs_WhiteSpace_OperatorSpacingSniff implements \PHP_CodeSniffer\S
 
 					if ($tokens[$stackPtr + 1]['code'] === T_WHITESPACE) {
 						// ($var * - 1)
-						$phpcsFile->addError('Space after minus as a negative value is prohibited', $stackPtr + 1);
+						$phpcsFile->addError('Space after minus as a negative value is prohibited', $stackPtr + 1, 0);
 					} else {
 						return;
 					}

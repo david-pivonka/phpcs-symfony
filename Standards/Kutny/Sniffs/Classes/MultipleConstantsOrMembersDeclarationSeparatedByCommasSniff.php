@@ -41,13 +41,13 @@ class Kutny_Sniffs_Classes_MultipleConstantsOrMembersDeclarationSeparatedByComma
 			$thisConstant = $phpcsFile->findNext(T_EQUAL, $stackPtr);
 			$nextConstant = $phpcsFile->findNext(T_EQUAL, $thisConstant + 1);
 			if ($semicolon !== FALSE && $nextConstant !== FALSE && $nextConstant < $semicolon) {
-				$phpcsFile->addError('Multiple constants definition separated by commas is prohibited.', $nextConstant);
+				$phpcsFile->addError('Multiple constants definition separated by commas is prohibited.', $nextConstant, 0);
 			}
 		} else if ($this->isMember($phpcsFile, $phpcsFile->findNext(T_VARIABLE, $stackPtr))) {
 			$semicolon = $phpcsFile->findNext(T_SEMICOLON, $stackPtr);
 			$nextMember = $phpcsFile->findNext(T_VARIABLE, $phpcsFile->findNext(T_VARIABLE, $stackPtr) + 1);
 			if ($semicolon !== FALSE && $nextMember !== FALSE && $nextMember < $semicolon) {
-				$phpcsFile->addError('Multiple members definition separated by commas is prohibited.', $nextMember);
+				$phpcsFile->addError('Multiple members definition separated by commas is prohibited.', $nextMember, 0);
 			}
 		}
 	}

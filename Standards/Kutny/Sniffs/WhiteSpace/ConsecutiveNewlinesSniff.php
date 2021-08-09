@@ -43,7 +43,7 @@ class Kutny_Sniffs_WhiteSpace_ConsecutiveNewlinesSniff extends Kutny_Sniffs_Whit
 				$this->alreadyReported[] = $nextPtr;
 				if (!in_array($lastPtr, $this->alreadyReported)) {
 					$this->alreadyReported[] = $lastPtr;
-					$phpcsFile->addError('Two or more consecutive newlines are forbidden.', $nextPtr);
+					$phpcsFile->addError('Two or more consecutive newlines are forbidden.', $nextPtr, 0);
 				}
 			}
 			$lastPtr = $nextPtr;

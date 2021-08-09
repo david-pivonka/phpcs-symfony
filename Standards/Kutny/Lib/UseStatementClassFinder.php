@@ -51,7 +51,7 @@ class Kutny_Lib_UseStatementClassFinder  {
 		$firstString = $phpcsFile->findNext(array(T_STRING), $usePtr);
 
 		if (!$semicolon || $tokens[$semicolon]['line'] !== $tokens[$usePtr]['line'] || !$firstString) {
-			$phpcsFile->addError(sprintf('Invalid %s clausule.', $ns === true ? 'namespace' : 'use'), $usePtr);
+			$phpcsFile->addError(sprintf('Invalid %s clausule.', $ns === true ? 'namespace' : 'use'), $usePtr, 0);
 			return null;
 		}
 

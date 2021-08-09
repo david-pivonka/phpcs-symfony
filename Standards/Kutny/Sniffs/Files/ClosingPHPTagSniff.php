@@ -36,7 +36,7 @@ class Kutny_Sniffs_Files_ClosingPHPTagSniff implements \PHP_CodeSniffer\Sniffs\S
 		$tokens = $phpcsFile->getTokens();
 		$nextOpen = $phpcsFile->findNext(array(T_OPEN_TAG), $stackPtr);
 		if ($nextOpen === FALSE) {
-			$phpcsFile->addError('Closing tag at the end of the file is disallowed.', $stackPtr);
+			$phpcsFile->addError('Closing tag at the end of the file is disallowed.', $stackPtr, 0);
 		}
 	}
 

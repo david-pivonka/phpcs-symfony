@@ -36,7 +36,7 @@ class Kutny_Sniffs_Namespaces_ClassNameInUseClausuleMustNotStartWithBackslashSni
 		$tokens = $phpcsFile->getTokens();
 		$token = $tokens[$stackPtr];
 		if ($tokens[$stackPtr+2]['type'] == 'T_NS_SEPARATOR') {
-			$phpcsFile->addError('Class name in use clausule must not start with backslash.', $stackPtr);
+			$phpcsFile->addError('Class name in use clausule must not start with backslash.', $stackPtr, 0);
 		}
 	}//end process()
 

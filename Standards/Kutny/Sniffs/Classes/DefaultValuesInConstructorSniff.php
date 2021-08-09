@@ -64,7 +64,7 @@ class Kutny_Sniffs_Classes_DefaultValuesInConstructorSniff
 
 		$nextChar = $phpcsFile->findNext(T_WHITESPACE, $stackPtr + 1, NULL, TRUE);
 		if ($nextChar !== FALSE && $tokens[$nextChar]['code'] === T_EQUAL) {
-			$phpcsFile->addError('Default values for members must be set in the constructor.', $nextChar);
+			$phpcsFile->addError('Default values for members must be set in the constructor.', $nextChar, 0);
 		}
 	}
 

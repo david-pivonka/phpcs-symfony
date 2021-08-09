@@ -34,7 +34,8 @@ class Kutny_Sniffs_Namespaces_UnusedUseClausesSniff implements \PHP_CodeSniffer\
 			if (!$usedClasses->containsClass($classNameOrAs)) {
 				$phpcsFile->addError(
 					sprintf('Identifier %s from use clause is not used in this file.', $classesInUses[$ptr]->getFullClassNmeOrAs()),
-					$ptr
+					$ptr,
+                    0
 				);
 			}
 		}

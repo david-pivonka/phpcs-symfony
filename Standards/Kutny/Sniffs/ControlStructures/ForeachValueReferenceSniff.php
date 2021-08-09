@@ -32,7 +32,7 @@ class Kutny_Sniffs_ControlStructures_ForeachValueReferenceSniff implements \PHP_
 
 		$ampersand = $phpcsFile->findNext(T_BITWISE_AND, $token['parenthesis_opener'], $token['parenthesis_closer']);
 		if ($ampersand !== FALSE) {
-			$phpcsFile->addError('Passing value as reference in foreach scope is prohibited.', $ampersand);
+			$phpcsFile->addError('Passing value as reference in foreach scope is prohibited.', $ampersand, 0);
 		}
 	}
 

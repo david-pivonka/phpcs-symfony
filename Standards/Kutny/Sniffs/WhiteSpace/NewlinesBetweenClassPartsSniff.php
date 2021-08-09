@@ -33,14 +33,14 @@ class Kutny_Sniffs_WhiteSpace_NewlinesBetweenClassPartsSniff extends Kutny_Sniff
 		$tokens = $phpcsFile->getTokens();
 		$first = $phpcsFile->findNext(array(T_WHITESPACE), $stackPtr + 1, NULL, TRUE);
 		if ($tokens[$first]['line'] != $tokens[$stackPtr]['line'] + 2) {
-			$phpcsFile->addError('First PHP token must be on the third line after PHP opening tag.', $first);
+			$phpcsFile->addError('First PHP token must be on the third line after PHP opening tag.', $first, 0);
 		}
 
 		$namespace = $phpcsFile->findNext(array(T_NAMESPACE), $stackPtr + 1);
 		if ($namespace !== FALSE && $tokens[$namespace]['content'] === 'namespace'
 				&& (!$this->isPreviousLineEmpty($phpcsFile, $namespace)
 					|| !$this->isNextLineEmpty($phpcsFile, $namespace))) {
-			$phpcsFile->addError('Namespace declaration must be separated by newlines.', $namespace);
+			$phpcsFile->addError('Namespace declaration must be separated by newlines.', $namespace, 0);
 		}
 
 		$use = NULL;
@@ -48,7 +48,8 @@ class Kutny_Sniffs_WhiteSpace_NewlinesBetweenClassPartsSniff extends Kutny_Sniff
 		if ($next && $this->isUseStatement($phpcsFile, $next) && !$this->isPreviousLineEmpty($phpcsFile, $next)) {
 			$phpcsFile->addError(
 				'Line before first use clausule must be empty.',
-				$this->getLastPtrOnPreviousLine($phpcsFile, $next)
+				$this->getLastPtrOnPreviousLine($phpcsFile, $next),
+                0
 			);
 		}
 
@@ -65,7 +66,8 @@ class Kutny_Sniffs_WhiteSpace_NewlinesBetweenClassPartsSniff extends Kutny_Sniff
 			if (!$this->isNextLineEmpty($phpcsFile, $use)) {
 				$phpcsFile->addError(
 					'Line after last use clausule must be empty.',
-					$this->getLastPtrOnNextLine($phpcsFile, $use)
+					$this->getLastPtrOnNextLine($phpcsFile, $use),
+                    0
 				);
 			}
 		}
@@ -79,7 +81,8 @@ class Kutny_Sniffs_WhiteSpace_NewlinesBetweenClassPartsSniff extends Kutny_Sniff
 			if ($this->isNextLineEmpty($phpcsFile, $tokens[$class]['scope_opener'])) {
 				$phpcsFile->addError(
 					'Line after ' . $name . ' open parenthesis must NOT be empty.',
-					$this->getLastPtrOnNextLine($phpcsFile, $tokens[$class]['scope_opener'])
+					$this->getLastPtrOnNextLine($phpcsFile, $tokens[$class]['scope_opener']),
+                    0
 				);
 			}
 
@@ -105,7 +108,7 @@ class Kutny_Sniffs_WhiteSpace_NewlinesBetweenClassPartsSniff extends Kutny_Sniff
 			if ($nextConst && $this->isNextLineEmpty($phpcsFile, $var)) {
 				$semicolon = $phpcsFile->findNext(array(T_SEMICOLON), $var);
 
-				$phpcsFile->addError('There must be NO empty lines between constant declarations.', $semicolon + 2);
+				$phpcsFile->addError('There must be NO empty lines between constant declarations.', $semicolon + 2, 0);
 			}
 
 			if ($nextConst === FALSE && !$this->isNextLineEmpty($phpcsFile, $var)) {
@@ -115,7 +118,7 @@ class Kutny_Sniffs_WhiteSpace_NewlinesBetweenClassPartsSniff extends Kutny_Sniff
 				$semicolon = $phpcsFile->findNext(T_SEMICOLON, $var);
 
 				if ($nextEquals === FALSE || $semicolon < $nextEquals) {
-					$phpcsFile->addError('Line after last constant must be empty.', $this->getLastPtrOnNextLine($phpcsFile, $var));
+					$phpcsFile->addError('Line after last constant must be empty.', $this->getLastPtrOnNextLine($phpcsFile, $var), 0);
 				}
 			}
 
@@ -135,7 +138,7 @@ class Kutny_Sniffs_WhiteSpace_NewlinesBetweenClassPartsSniff extends Kutny_Sniff
 					continue;
 				}
 				if ($tokens[$var + 1]['type'] === 'T_COMMA') {
-					$phpcsFile->addError('Member variables must be separated by a semicolon.', $var);
+					$phpcsFile->addError('Member variables must be separated by a semicolon.', $var, 0);
 					$next = $var + 1;
 					continue;
 				}
@@ -144,7 +147,8 @@ class Kutny_Sniffs_WhiteSpace_NewlinesBetweenClassPartsSniff extends Kutny_Sniff
 				if ($const !== FALSE) {
 					$phpcsFile->addError(
 						'All constants must be before class members.',
-						$const
+						$const,
+                        0
 					);
 				}
 
@@ -193,13 +197,15 @@ class Kutny_Sniffs_WhiteSpace_NewlinesBetweenClassPartsSniff extends Kutny_Sniff
 					if ($this->isNextLineEmpty($phpcsFile, $tokens[$function]['scope_opener'])) {
 						$phpcsFile->addError(
 							'Line after function open parenthesis must not be empty.',
-							$this->getLastPtrOnNextLine($phpcsFile, $tokens[$function]['scope_opener'])
+							$this->getLastPtrOnNextLine($phpcsFile, $tokens[$function]['scope_opener']),
+                            0
 						);
 					}
 					if ($this->isPreviousLineEmpty($phpcsFile, $tokens[$function]['scope_closer'])) {
 						$phpcsFile->addError(
 							'Line before function close parenthesis must not be empty.',
-							$this->getLastPtrOnPreviousLine($phpcsFile, $tokens[$function]['scope_closer'])
+							$this->getLastPtrOnPreviousLine($phpcsFile, $tokens[$function]['scope_closer']),
+                            0
 						);
 					}
 				}
@@ -208,7 +214,8 @@ class Kutny_Sniffs_WhiteSpace_NewlinesBetweenClassPartsSniff extends Kutny_Sniff
 				if ($nextFunctionStactPtr && !$this->isNextLineEmpty($phpcsFile, $tokens[$function]['scope_closer'])) {
 					$phpcsFile->addError(
 						'Line after function close parenthesis must be empty.',
-						$this->getLastPtrOnNextLine($phpcsFile, $tokens[$function]['scope_closer'])
+						$this->getLastPtrOnNextLine($phpcsFile, $tokens[$function]['scope_closer']),
+                        0
 					);
 				}
 			}
