@@ -8,7 +8,7 @@ class Kutny_Lib_ClassFinder_TypeHintingParser {
 		$this->classNameComposerForward = $classNameComposerForward;
 	}
 
-	public function getClassNames(PHP_CodeSniffer_File $phpcsFile) {
+	public function getClassNames(\PHP_CodeSniffer\Files\File $phpcsFile) {
 		$start = 0;
 		$tokens = $phpcsFile->getTokens();
 		$classNames = array();

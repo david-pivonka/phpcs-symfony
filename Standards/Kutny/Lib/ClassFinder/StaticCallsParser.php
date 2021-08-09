@@ -8,7 +8,7 @@ class Kutny_Lib_ClassFinder_StaticCallsParser {
 		$this->classNameComposerBackward = $classNameComposerBackward;
 	}
 
-	public function getClassNames(PHP_CodeSniffer_File $phpcsFile) {
+	public function getClassNames(\PHP_CodeSniffer\Files\File $phpcsFile) {
 		$start = 0;
 		$classNames = array();
 

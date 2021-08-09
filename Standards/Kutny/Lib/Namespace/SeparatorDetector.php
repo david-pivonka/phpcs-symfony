@@ -2,7 +2,7 @@
 
 class Kutny_Lib_Namespace_SeparatorDetector {
 
-	public function isFirstNamespaceSeparator(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+	public function isFirstNamespaceSeparator(\PHP_CodeSniffer\Files\File $phpcsFile, $stackPtr) {
 		$currentStackPtr = $stackPtr;
 		$tokens = $phpcsFile->getTokens();
 

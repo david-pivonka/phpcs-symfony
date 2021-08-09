@@ -1,6 +1,6 @@
 <?php
 
-class Kutny_Sniffs_Namespaces_FullyQualifiedNameRulesSniff implements PHP_CodeSniffer_Sniff {
+class Kutny_Sniffs_Namespaces_FullyQualifiedNameRulesSniff implements \PHP_CodeSniffer\Sniffs\Sniff {
 
 	private $classFinder;
 	private $phpDocsClassFinder;
@@ -27,7 +27,7 @@ class Kutny_Sniffs_Namespaces_FullyQualifiedNameRulesSniff implements PHP_CodeSn
 		);
     }
 
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+    public function process(\PHP_CodeSniffer\Files\File $phpcsFile, $stackPtr) {
 		$tokens = $phpcsFile->getTokens();
 
 		if ($tokens[$stackPtr]['type'] === 'T_NS_SEPARATOR') {
@@ -38,7 +38,7 @@ class Kutny_Sniffs_Namespaces_FullyQualifiedNameRulesSniff implements PHP_CodeSn
 		}
 	}
 
-	private function processNamespaceSeparator(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+	private function processNamespaceSeparator(\PHP_CodeSniffer\Files\File $phpcsFile, $stackPtr) {
 		$tokens = $phpcsFile->getTokens();
 
 		if (!$this->namespaceSeparatorDetector->isFirstNamespaceSeparator($phpcsFile, $stackPtr)) {
@@ -65,7 +65,7 @@ class Kutny_Sniffs_Namespaces_FullyQualifiedNameRulesSniff implements PHP_CodeSn
 		}
 	}
 
-	private function processPhpDocComment(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+	private function processPhpDocComment(\PHP_CodeSniffer\Files\File $phpcsFile, $stackPtr) {
 		$tokens = $phpcsFile->getTokens();
 		$tokenContent = $tokens[$stackPtr]['content'];
 		$classInPhpDocs = $this->classInPhpDocsFinder->find($tokenContent);

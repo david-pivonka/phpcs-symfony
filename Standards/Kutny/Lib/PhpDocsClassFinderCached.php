@@ -13,7 +13,7 @@ class Kutny_Lib_PhpDocsClassFinderCached  {
 	/**
 	 * @return Kutny_Lib_ClassDefinitionList
 	 */
-	public function findClasses(PHP_CodeSniffer_File $phpcsFile) {
+	public function findClasses(\PHP_CodeSniffer\Files\File $phpcsFile) {
 		$cacheKey = $phpcsFile->getFilename();
 
 		if (!array_key_exists($cacheKey, $this->cachedResults)) {

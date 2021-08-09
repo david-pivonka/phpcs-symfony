@@ -13,14 +13,14 @@ class Kutny_Lib_AllClassFinder  {
 		$this->classFinder = $classFinder;
 	}
 
-	public function findClasses(PHP_CodeSniffer_File $phpcsFile) {
+	public function findClasses(\PHP_CodeSniffer\Files\File $phpcsFile) {
 		$usedClasses = $this->classFinder->findClasses($phpcsFile)->getClasses();
 		$usedClasseesInPhpDocs = $this->phpDocsClassFinder->findClasses($phpcsFile)->getClasses();
 
 		return $this->formatOutput($usedClasses, $usedClasseesInPhpDocs);
 	}
 
-	public function findClassesIncludingFileClass(PHP_CodeSniffer_File $phpcsFile) {
+	public function findClassesIncludingFileClass(\PHP_CodeSniffer\Files\File $phpcsFile) {
 		$usedClasses = $this->classFinder->findClassesIncludingFileClass($phpcsFile)->getClasses();
 		$usedClasseesInPhpDocs = $this->phpDocsClassFinder->findClasses($phpcsFile)->getClasses();
 

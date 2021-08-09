@@ -13,7 +13,7 @@ class Kutny_Lib_UseStatementClassFinderCached  {
 	/**
 	 * @return Kutny_Lib_ClassInUseStatementList
 	 */
-	public function findClasses(PHP_CodeSniffer_File $phpcsFile) {
+	public function findClasses(\PHP_CodeSniffer\Files\File $phpcsFile) {
 		$cacheKey = $phpcsFile->getFilename();
 
 		if (!array_key_exists($cacheKey, $this->cachedResults)) {
@@ -23,7 +23,7 @@ class Kutny_Lib_UseStatementClassFinderCached  {
 		return $this->cachedResults[$cacheKey];
 	}
 
-	public function buildClassNameFromUse(PHP_CodeSniffer_File $phpcsFile, $usePtr, $ns = false) {
+	public function buildClassNameFromUse(\PHP_CodeSniffer\Files\File $phpcsFile, $usePtr, $ns = false) {
 		return $this->useStatementClassFinder->buildClassNameFromUse($phpcsFile, $usePtr, $ns);
 	}
 

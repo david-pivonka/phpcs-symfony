@@ -1,6 +1,6 @@
 <?php
 
-class Kutny_Sniffs_Namespaces_UnusedUseClausesSniff implements PHP_CodeSniffer_Sniff {
+class Kutny_Sniffs_Namespaces_UnusedUseClausesSniff implements \PHP_CodeSniffer\Sniffs\Sniff {
 
 	private $classFinder;
 	private $phpDocsClassFinder;
@@ -18,7 +18,7 @@ class Kutny_Sniffs_Namespaces_UnusedUseClausesSniff implements PHP_CodeSniffer_S
 		);
     }
 
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+    public function process(\PHP_CodeSniffer\Files\File $phpcsFile, $stackPtr) {
 		$classesInUses = $this->useStatementClassFinder->findClasses($phpcsFile)->getIndexedByUsePtr();
 
 		$usedClasses = $this->classFinder->findClasses($phpcsFile);

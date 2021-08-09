@@ -2,7 +2,7 @@
 
 class Kutny_Lib_UseStatementClassFinder  {
 
-	public function findClasses(PHP_CodeSniffer_File $phpcsFile) {
+	public function findClasses(\PHP_CodeSniffer\Files\File $phpcsFile) {
 		$ptr = 0;
 
 		$tokens = $phpcsFile->getTokens();
@@ -45,7 +45,7 @@ class Kutny_Lib_UseStatementClassFinder  {
 		return new Kutny_Lib_ClassInUseStatement($className, $namespace, $as, $usePtr);
 	}
 
-	public function buildClassNameFromUse(PHP_CodeSniffer_File $phpcsFile, $usePtr, $ns = false) {
+	public function buildClassNameFromUse(\PHP_CodeSniffer\Files\File $phpcsFile, $usePtr, $ns = false) {
 		$tokens = $phpcsFile->getTokens();
 		$semicolon = $phpcsFile->findNext(array(T_SEMICOLON), $usePtr);
 		$firstString = $phpcsFile->findNext(array(T_STRING), $usePtr);

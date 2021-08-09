@@ -5,7 +5,7 @@
  * Because of this behaviour: https://bugs.php.net/bug.php?id=29992
  * @author ondrej
  */
-class Kutny_Sniffs_ControlStructures_ForeachValueReferenceSniff implements PHP_CodeSniffer_Sniff
+class Kutny_Sniffs_ControlStructures_ForeachValueReferenceSniff implements \PHP_CodeSniffer\Sniffs\Sniff
 {
 
 	public function register()
@@ -19,13 +19,13 @@ class Kutny_Sniffs_ControlStructures_ForeachValueReferenceSniff implements PHP_C
 	/**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The file being scanned.
      * @param int                  $stackPtr  The position of the current token in the
      *                                        stack passed in $tokens.
      *
      * @return void
 	 */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer\Files\File $phpcsFile, $stackPtr)
     {
 		$tokens = $phpcsFile->getTokens();
 		$token = $tokens[$stackPtr];

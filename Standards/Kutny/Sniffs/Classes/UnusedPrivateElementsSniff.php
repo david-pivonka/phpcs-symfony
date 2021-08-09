@@ -1,6 +1,6 @@
 <?php
 
-class Kutny_Sniffs_Classes_UnusedPrivateElementsSniff implements PHP_CodeSniffer_Sniff
+class Kutny_Sniffs_Classes_UnusedPrivateElementsSniff implements \PHP_CodeSniffer\Sniffs\Sniff
 {
 	const CODE_UNUSED_PROPERTY = 'unusedProperty';
 
@@ -55,10 +55,10 @@ class Kutny_Sniffs_Classes_UnusedPrivateElementsSniff implements PHP_CodeSniffer
 	}
 
 	/**
-	 * @param PHP_CodeSniffer_File $phpcsFile
+	 * @param \PHP_CodeSniffer\Files\File $phpcsFile
 	 * @param integer $classPointer
 	 */
-	public function process(PHP_CodeSniffer_File $phpcsFile, $classPointer)
+	public function process(\PHP_CodeSniffer\Files\File $phpcsFile, $classPointer)
 	{
 		$tokens = $phpcsFile->getTokens();
 		$classToken = $tokens[$classPointer];
@@ -182,12 +182,12 @@ class Kutny_Sniffs_Classes_UnusedPrivateElementsSniff implements PHP_CodeSniffer
 	}
 
 	/**
-	 * @param PHP_CodeSniffer_File $phpcsFile
+	 * @param \PHP_CodeSniffer\Files\File $phpcsFile
 	 * @param mixed[] $tokens
 	 * @param mixed[] $classToken
 	 * @return integer[] string(name) => pointer
 	 */
-	private function getProperties(PHP_CodeSniffer_File $phpcsFile, array $tokens, array $classToken)
+	private function getProperties(\PHP_CodeSniffer\Files\File $phpcsFile, array $tokens, array $classToken)
 	{
 		$reportedProperties = [];
 		$findPropertiesStartTokenPointer = $classToken['scope_opener'] + 1;
@@ -224,12 +224,12 @@ class Kutny_Sniffs_Classes_UnusedPrivateElementsSniff implements PHP_CodeSniffer
 	}
 
 	/**
-	 * @param PHP_CodeSniffer_File $phpcsFile
+	 * @param \PHP_CodeSniffer\Files\File $phpcsFile
 	 * @param mixed[] $tokens
 	 * @param integer $privateTokenPointer
 	 * @return string[]
 	 */
-	private function getPhpDocTags(PHP_CodeSniffer_File $phpcsFile, array $tokens, $privateTokenPointer)
+	private function getPhpDocTags(\PHP_CodeSniffer\Files\File $phpcsFile, array $tokens, $privateTokenPointer)
 	{
 		$phpDocTokenCloseTagPointer = Kutny_Helpers_TokenHelper::findPreviousNonWhitespace($phpcsFile, $privateTokenPointer - 1);
 		$phpDocTokenCloseTag = $tokens[$phpDocTokenCloseTagPointer];
@@ -250,12 +250,12 @@ class Kutny_Sniffs_Classes_UnusedPrivateElementsSniff implements PHP_CodeSniffer
 	}
 
 	/**
-	 * @param PHP_CodeSniffer_File $phpcsFile
+	 * @param \PHP_CodeSniffer\Files\File $phpcsFile
 	 * @param mixed[] $tokens
 	 * @param mixed[] $classToken
 	 * @return integer[] string(name) => pointer
 	 */
-	private function getMethods(PHP_CodeSniffer_File $phpcsFile, array $tokens, array $classToken)
+	private function getMethods(\PHP_CodeSniffer\Files\File $phpcsFile, array $tokens, array $classToken)
 	{
 		$reportedMethods = [];
 		$findMethodsStartTokenPointer = $classToken['scope_opener'] + 1;
@@ -284,12 +284,12 @@ class Kutny_Sniffs_Classes_UnusedPrivateElementsSniff implements PHP_CodeSniffer
 	}
 
 	/**
-	 * @param PHP_CodeSniffer_File $phpcsFile
+	 * @param \PHP_CodeSniffer\Files\File $phpcsFile
 	 * @param mixed[] $tokens
 	 * @param integer $methodTokenPointer
 	 * @return integer|null
 	 */
-	private function findVisibilityModifier(PHP_CodeSniffer_File $phpcsFile, array $tokens, $methodTokenPointer)
+	private function findVisibilityModifier(\PHP_CodeSniffer\Files\File $phpcsFile, array $tokens, $methodTokenPointer)
 	{
 		$visibilityModifiedTokenPointer = Kutny_Helpers_TokenHelper::findPreviousNonWhitespace($phpcsFile, $methodTokenPointer - 1);
 		$visibilityModifiedToken = $tokens[$visibilityModifiedTokenPointer];

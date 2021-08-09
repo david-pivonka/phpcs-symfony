@@ -23,13 +23,13 @@ class Kutny_Sniffs_WhiteSpace_ConsecutiveNewlinesSniff extends Kutny_Sniffs_Whit
 	/**
 	 * Processes this test, when one of its tokens is encountered.
 	 *
-	 * @param PHP_CodeSniffer_File $phpcsFile All the tokens found in the document.
+	 * @param \PHP_CodeSniffer\Files\File $phpcsFile All the tokens found in the document.
 	 * @param int                  $stackPtr  The position of the current token in
 	 *                                        the stack passed in $tokens.
 	 *
 	 * @return void
 	 */
-	public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr) {
+	public function process(\PHP_CodeSniffer\Files\File $phpcsFile, $stackPtr) {
 		$tokens = $phpcsFile->getTokens();
 		$lastPtr = $stackPtr;
 		while (TRUE) {

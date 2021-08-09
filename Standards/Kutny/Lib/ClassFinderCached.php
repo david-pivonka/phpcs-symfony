@@ -15,7 +15,7 @@ class Kutny_Lib_ClassFinderCached  {
 	/**
 	 * @return Kutny_Lib_ClassDefinitionList
 	 */
-	public function findClasses(PHP_CodeSniffer_File $phpcsFile) {
+	public function findClasses(\PHP_CodeSniffer\Files\File $phpcsFile) {
 		$cacheKey = $phpcsFile->getFilename();
 
 		if (!array_key_exists($cacheKey, $this->cachedResults1)) {
@@ -28,7 +28,7 @@ class Kutny_Lib_ClassFinderCached  {
 	/**
 	 * @return Kutny_Lib_ClassDefinitionList
 	 */
-	public function findClassesIncludingFileClass(PHP_CodeSniffer_File $phpcsFile) {
+	public function findClassesIncludingFileClass(\PHP_CodeSniffer\Files\File $phpcsFile) {
 		$cacheKey = $phpcsFile->getFilename();
 
 		if (!array_key_exists($cacheKey, $this->cachedResults2)) {

@@ -8,7 +8,7 @@ class Kutny_Lib_ClassFinder_SimpleParser {
 		$this->classNameComposerForward = $classNameComposerForward;
 	}
 
-	public function getClassNames(PHP_CodeSniffer_File $phpcsFile, array $tokensToSearchFor) {
+	public function getClassNames(\PHP_CodeSniffer\Files\File $phpcsFile, array $tokensToSearchFor) {
 		$start = 0;
 		$classNames = array();
 

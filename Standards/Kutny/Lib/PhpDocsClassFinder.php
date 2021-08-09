@@ -13,7 +13,7 @@ class Kutny_Lib_PhpDocsClassFinder  {
 		$this->classInPhpDocsFinder = $classInPhpDocsFinder;
 	}
 
-	public function findClasses(PHP_CodeSniffer_File $phpcsFile) {
+	public function findClasses(\PHP_CodeSniffer\Files\File $phpcsFile) {
 		$tokens = $phpcsFile->getTokens();
 		$classes = array();
 		$classNames = array();

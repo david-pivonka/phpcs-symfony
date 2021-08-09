@@ -8,7 +8,7 @@ class Kutny_Lib_ClassFinder_ImplementsParser {
 		$this->classNameComposerForward = $classNameComposerForward;
 	}
 
-	public function getClassNames(PHP_CodeSniffer_File $phpcsFile) {
+	public function getClassNames(\PHP_CodeSniffer\Files\File $phpcsFile) {
 		$classNames = array();
 
 		$implementsPtr = $phpcsFile->findNext(T_IMPLEMENTS, 0);

@@ -21,14 +21,14 @@ class Kutny_Sniffs_WhiteSpace_NewlinesBetweenClassPartsSniff extends Kutny_Sniff
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile All the tokens found in the document.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile All the tokens found in the document.
      * @param int                  $stackPtr  The position of the current token in
      *                                        the stack passed in $tokens.
 	 [$first]['line']);
 
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer\Files\File $phpcsFile, $stackPtr)
     {
 		$tokens = $phpcsFile->getTokens();
 		$first = $phpcsFile->findNext(array(T_WHITESPACE), $stackPtr + 1, NULL, TRUE);
@@ -318,7 +318,7 @@ class Kutny_Sniffs_WhiteSpace_NewlinesBetweenClassPartsSniff extends Kutny_Sniff
 
 	/**
 	 * Finds previous token whose value starts with $start parameter.
-	 * Copied from PHP_CodeSniffer_File
+	 * Copied from \PHP_CodeSniffer\Files\File
 	 */
 	public function findPrevious(
 		$file,

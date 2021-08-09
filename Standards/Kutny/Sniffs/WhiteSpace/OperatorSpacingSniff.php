@@ -32,7 +32,7 @@
  * @version   Release: 1.3.2
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
-class Kutny_Sniffs_WhiteSpace_OperatorSpacingSniff implements PHP_CodeSniffer_Sniff
+class Kutny_Sniffs_WhiteSpace_OperatorSpacingSniff implements \PHP_CodeSniffer\Sniffs\Sniff
 {
 
     /**
@@ -61,13 +61,13 @@ class Kutny_Sniffs_WhiteSpace_OperatorSpacingSniff implements PHP_CodeSniffer_Sn
     /**
      * Processes this sniff, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The current file being checked.
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The current file being checked.
      * @param int                  $stackPtr  The position of the current token in the
      *                                        stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(\PHP_CodeSniffer\Files\File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 

@@ -15,24 +15,24 @@ class Kutny_Helpers_TokenHelper
 	];
 
 	/**
-	 * @param PHP_CodeSniffer_File $phpcsFile
+	 * @param \PHP_CodeSniffer\Files\File $phpcsFile
 	 * @param integer $startPointer search starts at this token, inclusive
 	 * @param integer|null $endPointer search ends at this token, exclusive
 	 * @return integer|null
 	 */
-	public static function findNextNonWhitespace(PHP_CodeSniffer_File $phpcsFile, $startPointer, $endPointer = null)
+	public static function findNextNonWhitespace(\PHP_CodeSniffer\Files\File $phpcsFile, $startPointer, $endPointer = null)
 	{
 		return self::findNextExcluding($phpcsFile, T_WHITESPACE, $startPointer, $endPointer);
 	}
 
 	/**
-	 * @param PHP_CodeSniffer_File $phpcsFile
+	 * @param \PHP_CodeSniffer\Files\File $phpcsFile
 	 * @param integer|integer[] $types
 	 * @param integer $startPointer search starts at this token, inclusive
 	 * @param integer|null $endPointer search ends at this token, exclusive
 	 * @return integer|null
 	 */
-	public static function findNextExcluding(PHP_CodeSniffer_File $phpcsFile, $types, $startPointer, $endPointer = null)
+	public static function findNextExcluding(\PHP_CodeSniffer\Files\File $phpcsFile, $types, $startPointer, $endPointer = null)
 	{
 		$token = $phpcsFile->findNext($types, $startPointer, $endPointer, true);
 		if ($token === false) {
@@ -42,35 +42,35 @@ class Kutny_Helpers_TokenHelper
 	}
 
 	/**
-	 * @param PHP_CodeSniffer_File $phpcsFile
+	 * @param \PHP_CodeSniffer\Files\File $phpcsFile
 	 * @param integer $startPointer search starts at this token, inclusive
 	 * @param integer|null $endPointer search ends at this token, exclusive
 	 * @return integer|null
 	 */
-	public static function findNextAnyToken(PHP_CodeSniffer_File $phpcsFile, $startPointer, $endPointer = null)
+	public static function findNextAnyToken(\PHP_CodeSniffer\Files\File $phpcsFile, $startPointer, $endPointer = null)
 	{
 		return self::findNextExcluding($phpcsFile, [], $startPointer, $endPointer);
 	}
 
 	/**
-	 * @param PHP_CodeSniffer_File $phpcsFile
+	 * @param \PHP_CodeSniffer\Files\File $phpcsFile
 	 * @param integer $startPointer search starts at this token, inclusive
 	 * @param integer|null $endPointer search ends at this token, exclusive
 	 * @return integer|null
 	 */
-	public static function findPreviousNonWhitespace(PHP_CodeSniffer_File $phpcsFile, $startPointer, $endPointer = null)
+	public static function findPreviousNonWhitespace(\PHP_CodeSniffer\Files\File $phpcsFile, $startPointer, $endPointer = null)
 	{
 		return self::findPreviousExcluding($phpcsFile, T_WHITESPACE, $startPointer, $endPointer);
 	}
 
 	/**
-	 * @param PHP_CodeSniffer_File $phpcsFile
+	 * @param \PHP_CodeSniffer\Files\File $phpcsFile
 	 * @param integer[]|integer $types
 	 * @param integer $startPointer search starts at this token, inclusive
 	 * @param integer|null $endPointer search ends at this token, exclusive
 	 * @return integer|null
 	 */
-	public static function findPreviousExcluding(PHP_CodeSniffer_File $phpcsFile, $types, $startPointer, $endPointer = null)
+	public static function findPreviousExcluding(\PHP_CodeSniffer\Files\File $phpcsFile, $types, $startPointer, $endPointer = null)
 	{
 		$token = $phpcsFile->findPrevious($types, $startPointer, $endPointer, true);
 		if ($token === false) {
@@ -80,11 +80,11 @@ class Kutny_Helpers_TokenHelper
 	}
 
 	/**
-	 * @param PHP_CodeSniffer_File $phpcsFile
+	 * @param \PHP_CodeSniffer\Files\File $phpcsFile
 	 * @param integer $pointer search starts at this token, inclusive
 	 * @return integer|null
 	 */
-	public static function findFirstTokenOnNextLine(PHP_CodeSniffer_File $phpcsFile, $pointer)
+	public static function findFirstTokenOnNextLine(\PHP_CodeSniffer\Files\File $phpcsFile, $pointer)
 	{
 		$newLinePointer = $phpcsFile->findNext(T_WHITESPACE, $pointer, null, false, $phpcsFile->eolChar);
 		if ($newLinePointer === false) {
@@ -95,12 +95,12 @@ class Kutny_Helpers_TokenHelper
 	}
 
 	/**
-	 * @param PHP_CodeSniffer_File $phpcsFile
+	 * @param \PHP_CodeSniffer\Files\File $phpcsFile
 	 * @param integer $startPointer search starts at this token, inclusive
 	 * @param integer|null $endPointer search ends at this token, exclusive
 	 * @return string
 	 */
-	public static function getContent(PHP_CodeSniffer_File $phpcsFile, $startPointer, $endPointer = null)
+	public static function getContent(\PHP_CodeSniffer\Files\File $phpcsFile, $startPointer, $endPointer = null)
 	{
 		$tokens = $phpcsFile->getTokens();
 		$content = '';
@@ -119,11 +119,11 @@ class Kutny_Helpers_TokenHelper
 	}
 
 	/**
-	 * @param PHP_CodeSniffer_File $phpcsFile
+	 * @param \PHP_CodeSniffer\Files\File $phpcsFile
 	 * @return integer
 	 * @throws Kutny_Helpers_EmptyFileException
 	 */
-	public static function getLastTokenPointer(PHP_CodeSniffer_File $phpcsFile)
+	public static function getLastTokenPointer(\PHP_CodeSniffer\Files\File $phpcsFile)
 	{
 		$tokenCount = count($phpcsFile->getTokens());
 		if ($tokenCount === 0) {
